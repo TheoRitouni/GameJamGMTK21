@@ -13,6 +13,8 @@ public class BallVisual : MonoBehaviour
     [Header("Hitstops")]
     [SerializeField] HitstopData[] hitstopDataList;
 
+    [Header("Renderer")]
+    [SerializeField] SpriteRenderer ballRenderer;
 
     [Header("Indicator")]
     [SerializeField] Indicator indicator;
@@ -22,6 +24,10 @@ public class BallVisual : MonoBehaviour
 
     [Header("Particles")]
     [SerializeField] ParticleSystem smokeParticles;
+
+    [Header("Squash and Stretch")]
+    [SerializeField] AnimationCurve squatchCurveX = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
+    [SerializeField] AnimationCurve squatchCurveY = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
 
     private void Start()
     {
@@ -39,6 +45,11 @@ public class BallVisual : MonoBehaviour
         ChainSetting();
     }
 
+    private void LateUpdate()
+    {
+        SquashAndStretch();
+    }
+
     void OnHitGround(Collision2D pCollision)
     {
         ParticleSystem lSmokeParticles = Instantiate(smokeParticles);
@@ -49,6 +60,15 @@ public class BallVisual : MonoBehaviour
 
         ShakeManager.getInstance().Shake(shakeDataList[0]);
         HitstopManager.getInstance().PlayHitStop(hitstopDataList[2]);
+    }
+
+    void SquashAndStretch()
+    {
+        Vector2 lVelocity = ball.velocity;
+        float lRatio = lVelocity.magnitude/ball.maxForce;
+
+        ballRenderer.transform.eulerAngles = new Vector3 (0,0,((Mathf.Atan2(lVelocity.normalized.y, lVelocity.normalized.x))*Mathf.Rad2Deg)-90);
+        ballRenderer.transform.localScale = new Vector3 (squatchCurveX.Evaluate(lRatio), squatchCurveY.Evaluate(lRatio),1);
     }
 
     void OnHitEnemy()

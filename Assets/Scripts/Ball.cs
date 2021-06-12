@@ -53,6 +53,8 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private BallTrigger ballTrigger;
 
+    public Vector2 velocity => rigid.velocity;
+    public float maxForce => force3;
 
     void Start()
     {
