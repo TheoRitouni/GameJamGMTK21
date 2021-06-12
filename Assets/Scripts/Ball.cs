@@ -165,7 +165,7 @@ public class Ball : MonoBehaviour
 
             if (Input.GetAxis("RightTrigger") != 0)
             {
-                rigid.AddForce(dirJoystickLeft.normalized * finalForce);
+                rigid.velocity = (dirJoystickLeft.normalized * finalForce);
                 ResetValueRotation();
                 ResetBoolOneRotateDone();
                 holdDir = false;
@@ -176,10 +176,13 @@ public class Ball : MonoBehaviour
     // check ennemy if you touch kill it 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(TagList.groundTag)) onHitGround?.Invoke();
+        if (collision.gameObject.CompareTag(TagList.groundTag))
+        {
+            onHitGround?.Invoke();
+            ReflectBall(collision.contacts[0].normal);
+        }
         else if (collision.gameObject.CompareTag(TagList.enemyTag)) onHitEnemy?.Invoke();
 
-        ReflectBall(collision.contacts[0].normal);
     }
 
    
@@ -195,7 +198,7 @@ public class Ball : MonoBehaviour
         {
             checkRightTrigger = true;
             rigid.velocity = new Vector2(0, 0);
-            rigid.AddForce(reflect.normalized * reflectForce);
+            rigid.velocity = (reflect.normalized * reflectForce);
         }
 
         if (Input.GetAxis("RightTrigger") > -1)

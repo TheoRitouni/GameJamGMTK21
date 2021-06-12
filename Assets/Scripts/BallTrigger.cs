@@ -25,7 +25,7 @@ public class BallTrigger : MonoBehaviour
     {
         if(isReflect)
         {
-            timerSpecialCapacity -= Time.deltaTime;
+            timerSpecialCapacity -= Time.unscaledTime;
         
             if(timerSpecialCapacity <= 0)
             {

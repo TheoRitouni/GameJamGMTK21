@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eca8f2632230240bbc2cb74c1ab38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
+  ball: {fileID: 6831992101945962078}
   player: {fileID: 0}
   shakeDataList:
   - {fileID: 11400000, guid: 031aaba33f49bd04ea013850679c2d85, type: 2}
   - {fileID: 11400000, guid: b41e2c8e1a0f5e544b658c2efdee0aa5, type: 2}
   - {fileID: 11400000, guid: 58117f654d961d94bbcdf45d5a8d123e, type: 2}
+  hitstopDataList: []
   launchIndicator: {fileID: 7722441394704825338}
   offset: 12
   chain: {fileID: 5317310196932420797}
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveVelocityBall: {x: 0, y: 0}
   isReflect: 0
-  timerSpecialCapacity: 1
+  timerSpecialCapacity: 0.5
 --- !u!1 &6142898692898561960
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
-  m_Distance: 4
+  m_Distance: 3
   m_DampingRatio: 0
   m_Frequency: 0.8
 --- !u!58 &6831992101945962072
@@ -401,11 +402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d41f13a70647f440b420c49e6712ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force1: 8000
-  force2: 11000
-  force3: 15000
+  force1: 20
+  force2: 30
+  force3: 50
   toleranceRotation: 0.5
-  reflectForce: 5000
+  reflectForce: 50
   ballTrigger: {fileID: 6038095763997214326}
 --- !u!1 &8172501940662313739
 GameObject:

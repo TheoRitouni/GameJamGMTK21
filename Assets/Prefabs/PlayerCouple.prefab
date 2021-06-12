@@ -39,22 +39,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9162526493201561447}
     m_Modifications:
-    - target: {fileID: 1443391308148815800, guid: 2adf43a8a9770c84991b100a2f05ba19,
-        type: 3}
-      propertyPath: m_Distance
-      value: 7.582541
-      objectReference: {fileID: 0}
     - target: {fileID: 2738730339250863372, guid: 2adf43a8a9770c84991b100a2f05ba19,
-        type: 3}
-      propertyPath: ball
-      value: 
-      objectReference: {fileID: 9162526491655920226}
-    - target: {fileID: 2738730339250863372, guid: 2adf43a8a9770c84991b100a2f05ba19,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 9162526491909204154}
-    - target: {fileID: 5140828355986977794, guid: 2adf43a8a9770c84991b100a2f05ba19,
         type: 3}
       propertyPath: player
       value: 
@@ -66,19 +51,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6831992101945962073, guid: 2adf43a8a9770c84991b100a2f05ba19,
         type: 3}
-      propertyPath: m_Distance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6831992101945962073, guid: 2adf43a8a9770c84991b100a2f05ba19,
-        type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 9162526491909204155}
-    - target: {fileID: 6831992101945962073, guid: 2adf43a8a9770c84991b100a2f05ba19,
-        type: 3}
-      propertyPath: m_AutoConfigureDistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6831992101945962076, guid: 2adf43a8a9770c84991b100a2f05ba19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -142,18 +117,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2447646826355143740}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9162526491655920226 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6831992101945962078, guid: 2adf43a8a9770c84991b100a2f05ba19,
-    type: 3}
-  m_PrefabInstance: {fileID: 2447646826355143740}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d41f13a70647f440b420c49e6712ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6279655934959842385
 PrefabInstance:
   m_ObjectHideFlags: 0

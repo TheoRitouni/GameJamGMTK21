@@ -9,6 +9,10 @@ public class BallVisual : MonoBehaviour
 
     [Header("ScreenShakes")]
     [SerializeField] ShakeData[] shakeDataList;
+    
+    [Header("Hitstops")]
+    [SerializeField] HitstopData[] hitstopDataList;
+
 
     [Header("Indicator")]
     [SerializeField] Transform launchIndicator;
@@ -31,11 +35,14 @@ public class BallVisual : MonoBehaviour
     void OnHitGround()
     {
         ShakeManager.getInstance().Shake(shakeDataList[0]);
+        HitstopManager.getInstance().PlayHitStop(hitstopDataList[2]);
+
     }
 
     void OnHitEnemy()
     {
         ShakeManager.getInstance().Shake(shakeDataList[1]);
+        HitstopManager.getInstance().PlayHitStop(hitstopDataList[0]);
     }
 
     void IndicatorSetting()
