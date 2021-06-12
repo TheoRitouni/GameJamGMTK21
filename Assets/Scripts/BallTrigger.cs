@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using utils;
 
 public class BallTrigger : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class BallTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Cube"))
+        if (collision.CompareTag(TagList.groundTag))
         {
             saveVelocityBall = ball.velocity;
             isReflect = true;

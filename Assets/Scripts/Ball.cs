@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using utils;
 
 public class Ball : MonoBehaviour
 {
+    public UnityAction onHitGround;
+    public UnityAction onHitEnemy;
+
     // Force of ball
     [SerializeField]
     private float force1 = 100.0f;
@@ -170,6 +175,9 @@ public class Ball : MonoBehaviour
     // check ennemy if you touch kill it 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag(TagList.groundTag)) onHitGround?.Invoke();
+        else if (collision.gameObject.CompareTag(TagList.enemyTag)) onHitEnemy?.Invoke();
+
         ReflectBall(collision.contacts[0].normal);
     }
 
