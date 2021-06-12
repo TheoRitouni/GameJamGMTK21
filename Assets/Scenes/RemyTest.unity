@@ -262,7 +262,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 519420032}
+  - {fileID: 1616005444}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -355,10 +355,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 501274834}
+  m_Father: {fileID: 1616005444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647480481
@@ -855,6 +855,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1616005443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616005444}
+  m_Layer: 0
+  m_Name: CameraContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616005444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616005443}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 519420032}
+  m_Father: {fileID: 501274834}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1669991586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,5 +1310,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6831992101945962078, guid: 2adf43a8a9770c84991b100a2f05ba19,
+        type: 3}
+      propertyPath: shakeDataList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831992101945962078, guid: 2adf43a8a9770c84991b100a2f05ba19,
+        type: 3}
+      propertyPath: shakeDataList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 031aaba33f49bd04ea013850679c2d85,
+        type: 2}
+    - target: {fileID: 6831992101945962078, guid: 2adf43a8a9770c84991b100a2f05ba19,
+        type: 3}
+      propertyPath: shakeDataList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b41e2c8e1a0f5e544b658c2efdee0aa5,
+        type: 2}
+    - target: {fileID: 6831992101945962078, guid: 2adf43a8a9770c84991b100a2f05ba19,
+        type: 3}
+      propertyPath: shakeDataList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 58117f654d961d94bbcdf45d5a8d123e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2adf43a8a9770c84991b100a2f05ba19, type: 3}
