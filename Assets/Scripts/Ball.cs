@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public UnityAction<Collision2D> onHitGround;
     public UnityAction<int> onChangeForce;
     public UnityAction onHitEnemy;
+    public UnityAction onPropulsion;
 
 
     [Space]
@@ -185,6 +186,7 @@ public class Ball : MonoBehaviour
 
             if (Input.GetAxis("RightTrigger") != 0)
             {
+                onPropulsion?.Invoke();
                 rigid.velocity = (dirJoystickLeft.normalized * finalForce);
                 ResetValueRotation();
                 ResetBoolOneRotateDone();
@@ -235,9 +237,16 @@ public class Ball : MonoBehaviour
             dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (dirJoystickLeft.magnitude != 0)
-                rigid.velocity = dirJoystickLeft * ( reflectForce * multiplyValue[nbrOfReflect] );
+            {
+                rigid.velocity = dirJoystickLeft * (reflectForce * multiplyValue[nbrOfReflect]);
+                onPropulsion?.Invoke();
+            }
+
             else
-                rigid.velocity = reflect * ( reflectForce * multiplyValue[nbrOfReflect] );
+            {
+                rigid.velocity = reflect * (reflectForce * multiplyValue[nbrOfReflect]);
+                onPropulsion?.Invoke();
+            }
             
             if(nbrOfReflect < 4)
                 nbrOfReflect++;
