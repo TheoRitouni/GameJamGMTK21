@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2949363410e5ff4fab43bc6f716b983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelTimerMax: 3
+  _levelTimerMax: 10
   objectToSpawn:
   - {fileID: 3733893709952904065}
   - {fileID: 6812325824379689816}
