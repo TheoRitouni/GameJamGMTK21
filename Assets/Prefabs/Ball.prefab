@@ -49,7 +49,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 031aaba33f49bd04ea013850679c2d85, type: 2}
   - {fileID: 11400000, guid: b41e2c8e1a0f5e544b658c2efdee0aa5, type: 2}
   - {fileID: 11400000, guid: 58117f654d961d94bbcdf45d5a8d123e, type: 2}
-  hitstopDataList: []
+  hitstopDataList:
+  - {fileID: 11400000, guid: 4a2132c14b0f2f846bb303580af5f598, type: 2}
+  - {fileID: 11400000, guid: 0a01cc5b0ccd47445a25f484b160e7e5, type: 2}
+  - {fileID: 11400000, guid: 7f504003a0e76814785199574eece34a, type: 2}
   indicator:
     launchIndicator: {fileID: 2851077351263778364}
     trailIndicator: {fileID: 5959885809792142545}
