@@ -29,11 +29,16 @@ public class BallVisual : MonoBehaviour
     [SerializeField] AnimationCurve squatchCurveX = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
     [SerializeField] AnimationCurve squatchCurveY = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
 
+    [Header("VFX")]
+    [SerializeField] AudioSource audioSourcePropulsion;
+    [SerializeField] AudioSource audioSourceHitWall;
+
     private void Start()
     {
         ball.onHitGround += OnHitGround;
         ball.onHitEnemy += OnHitEnemy;
         ball.onChangeForce += OnChangeForce;
+        ball.onPropulsion += OnPropulsion;
 
         indicator.indicatorScale = indicator.launchIndicator.transform.localScale;
         indicator.indicatorTrailTime = indicator.trailIndicator.time;
@@ -57,10 +62,20 @@ public class BallVisual : MonoBehaviour
         Vector2 lNormal = pCollision.contacts[0].normal;
         lSmokeParticles.transform.eulerAngles = new Vector3(0,0,(Mathf.Atan2(lNormal.y, lNormal.x) * Mathf.Rad2Deg) - 90);
         lSmokeParticles.Play();
+        audioSourceHitWall.Play();
 
         ShakeManager.getInstance().Shake(shakeDataList[0]);
         HitstopManager.getInstance().PlayHitStop(hitstopDataList[2]);
     }
+
+    void OnPropulsion()
+    {
+        if (!audioSourcePropulsion.isPlaying)
+        {
+            audioSourcePropulsion.Play();
+        }
+    }
+
 
     void SquashAndStretch()
     {
