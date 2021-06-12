@@ -45,6 +45,7 @@ public class Ball : MonoBehaviour
     [Space]
     [SerializeField]
     private float reflectForce = 3000.0f;
+    private bool checkRightTrigger = false;
 
     // Generals Properties 
     private Rigidbody2D rigid;
@@ -189,10 +190,15 @@ public class Ball : MonoBehaviour
 
     void SetVelocityOfReflect()
     {
-        if (Input.GetAxis("RightTrigger") != 0)
+
+        if (Input.GetAxis("RightTrigger") != 0 && !checkRightTrigger)
         {
+            checkRightTrigger = true;
             rigid.velocity = new Vector2(0, 0);
             rigid.AddForce(reflect.normalized * reflectForce);
         }
+
+        if (Input.GetAxis("RightTrigger") > -1)
+            checkRightTrigger = false;
     }
 }
