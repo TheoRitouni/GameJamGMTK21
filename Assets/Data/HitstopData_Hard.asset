@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d0f5bf2fce4f84690d0e725baa6a37, type: 3}
   m_Name: HitstopData_Hard
   m_EditorClassIdentifier: 
-  _duration: 0.4
+  _duration: 0.15
   _amount: 0.01
