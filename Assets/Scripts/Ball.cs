@@ -53,7 +53,6 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private float distanceCheckGroundReflect = 1.0f;
 
-    private bool checkRightTrigger = false;
     private int nbrOfReflect = 0;
     public float[] multiplyValue = {1.05f,1.10f,1.15f,1.25f,1.40f};
 
@@ -75,14 +74,17 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        CheckBallPower();
-        DirectionBall();
+        if (Time.timeScale != 0)
+        {
+            CheckBallPower();
+            DirectionBall();
 
-        if (ballTrigger.isReflect)
-            SetVelocityOfReflect();
+            if (ballTrigger.isReflect)
+                SetVelocityOfReflect();
 
-        if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
-            nbrOfReflect = 0;
+            if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
+                nbrOfReflect = 0;
+        }
     }
 
     void CheckBallPower()

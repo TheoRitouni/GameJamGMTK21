@@ -41,8 +41,11 @@ public class BallVisual : MonoBehaviour
 
     private void Update()
     {
-        IndicatorSetting();
-        ChainSetting();
+        if (Time.timeScale != 0)
+        {
+            IndicatorSetting();
+            ChainSetting();
+        }
     }
 
     private void LateUpdate()
