@@ -100,6 +100,52 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7571847007345941227}
     m_Modifications:
+    - target: {fileID: -2437823816757902005, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 7422553036357566694, guid: abeca8e206d259c4e83c2cf7edd7ee48,
+        type: 2}
+    - target: {fileID: 2125561638510278029, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fee60ad20959aa4eac22aabfb7ffbed, type: 3}
+    - target: {fileID: 2350334342800121516, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350334342800121516, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063896779062499958, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063896779062499958, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063896779062499958, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063896779062499958, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d3109aafd7aad634ea0dec30af6558b4, type: 3}
+    - target: {fileID: 6489984351366874152, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9157114189150433048, guid: 00ee68502c5b8fb42959fdecf1af9172,
         type: 3}
       propertyPath: letter
@@ -185,7 +231,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2437823816757902005, guid: 00ee68502c5b8fb42959fdecf1af9172, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 00ee68502c5b8fb42959fdecf1af9172, type: 3}
 --- !u!4 &9215770531944075619 stripped
 Transform:

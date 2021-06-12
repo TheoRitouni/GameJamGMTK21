@@ -44,6 +44,7 @@ public class Ball : MonoBehaviour
     private float toleranceRotation = 0.5f;
 
 
+
     // Reflect 
     [Space]
     [Header("Reflect")]
@@ -61,9 +62,12 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigid;
     [SerializeField]
     private BallTrigger ballTrigger;
-
+    
     public Vector2 velocity => rigid.velocity;
     public float maxForce => force3;
+
+    [Header("FX")]
+    public AudioSource audioSourcePropulsion;
 
     void Start()
     {
@@ -178,6 +182,10 @@ public class Ball : MonoBehaviour
 
             if (Input.GetAxis("RightTrigger") != 0)
             {
+                if (!audioSourcePropulsion.isPlaying)
+                {
+                    audioSourcePropulsion.Play();
+                }
                 rigid.velocity = (dirJoystickLeft.normalized * finalForce);
                 ResetValueRotation();
                 ResetBoolOneRotateDone();
@@ -225,9 +233,22 @@ public class Ball : MonoBehaviour
             Physics.Raycast(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y,0), out hit, distanceCheckGroundReflect);
 
             if (dirJoystickLeft.magnitude != 0)
+            {
                 rigid.velocity = dirJoystickLeft * reflectForce;
+                if (!audioSourcePropulsion.isPlaying)
+                {
+                    audioSourcePropulsion.Play();
+                }
+            }
             else
+            {
                 rigid.velocity = reflect * reflectForce;
+                if (!audioSourcePropulsion.isPlaying)
+                {
+                    audioSourcePropulsion.Play();
+                }
+            }
+
         }
 
     }

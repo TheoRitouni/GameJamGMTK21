@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GuardBehavior : MonoBehaviour
 {
+    //UNITY ACTION
+    public UnityAction OnRun;
+    public UnityAction OnDeath;
+
+
     // FIELDS
     // SERIALIZED FIELDS
     [SerializeField] private float minSpeed = 5f;
@@ -20,17 +26,15 @@ public class GuardBehavior : MonoBehaviour
 
     // REFERENCES
     private Animator guardAnimator;
-    private AudioSource guardAudioSource;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
 
-    // SOUNDS
-    [SerializeField] private AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
     {
         guardSpeed = Random.Range(minSpeed, maxSpeed);
+        OnRun?.Invoke();
 
         // Set the position of the bird to the starting point
         transform.position = start.transform.position;
@@ -43,7 +47,6 @@ public class GuardBehavior : MonoBehaviour
 
         // References
         guardAnimator = GetComponent<Animator>();
-        guardAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -109,8 +112,7 @@ public class GuardBehavior : MonoBehaviour
             guardSpeed = 0f;
 
             // SFX
-            guardAudioSource.Stop();
-            guardAudioSource.PlayOneShot(deathSound);
+            OnDeath?.Invoke();
         }
     }
 }
