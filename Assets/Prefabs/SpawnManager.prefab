@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6193027718873386717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6193027718873386715}
+  - component: {fileID: 6193027718873386716}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: SpawnManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6193027718873386715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193027718873386717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.1748447, y: 2.6342018, z: -2.7675781}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6193027718873386716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193027718873386717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c9dd09706febe4a848faf89bf971a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosX: 20
+  minSpawnRateGuard: 2.5
+  maxSpawnRateGuard: 3
+  guardSpawnPosY: -9
+  guardPrefab: {fileID: 5936582203183771479, guid: befa5dc514099694e9cf6d8710401f4d,
+    type: 3}
+  minSpawnRateBird: 2
+  maxSpawnRateBird: 3
+  minBirdSpawnPosY: -5
+  maxBirdSpawnPosY: 9
+  birdPrefab: {fileID: 9157114189150433051, guid: 48c867d43043634409a2ce8f9df05ab6,
+    type: 3}
+  letterBirdProba: 0.15
+  letterBirdPrefab: {fileID: 5550034211545180435, guid: ccf0704a6ff483643aa1036337bdd3ab,
+    type: 3}
+  isAlert: 0
+  alertSpawnRateGuard: 0.8
+  alertSize: 10
+  alertCounter: 0
