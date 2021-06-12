@@ -201,7 +201,6 @@ public class Ball : MonoBehaviour
 
         if (Input.GetAxis("RightTrigger") != 0 && !checkRightTrigger)
         {
-            Debug.Log("Reflect");
             checkRightTrigger = true;
             rigid.velocity = new Vector2(0, 0);
             rigid.velocity = (reflect.normalized * reflectForce);
