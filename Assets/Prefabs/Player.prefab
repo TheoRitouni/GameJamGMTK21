@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2882871667219946731}
   - component: {fileID: 2882871667219946733}
   - component: {fileID: 2882871667219946730}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1169385711140732293}
   - component: {fileID: 1712422047945459557}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Renderer
   m_TagString: Player
   m_Icon: {fileID: 0}
