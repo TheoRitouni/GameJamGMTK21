@@ -23,6 +23,7 @@ public class GuardBehavior : MonoBehaviour
     private AudioSource guardAudioSource;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
+    private UIManager uiManagerScript;
 
     // SOUNDS
     [SerializeField] private AudioClip deathSound;
@@ -44,6 +45,7 @@ public class GuardBehavior : MonoBehaviour
         // References
         guardAnimator = GetComponent<Animator>();
         guardAudioSource = GetComponent<AudioSource>();
+        uiManagerScript = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -111,6 +113,9 @@ public class GuardBehavior : MonoBehaviour
             // SFX
             guardAudioSource.Stop();
             guardAudioSource.PlayOneShot(deathSound);
+
+            // UP DATE SCORE
+            uiManagerScript.UpdateScore("Guard");
         }
     }
 }

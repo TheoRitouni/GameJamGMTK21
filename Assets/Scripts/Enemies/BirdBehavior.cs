@@ -25,6 +25,7 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private GameObject letter;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
+    private UIManager uiManagerScript;
 
     // SFX
     [SerializeField] private AudioClip deathSound;
@@ -56,6 +57,7 @@ public class BirdBehavior : MonoBehaviour
         // References
         birdAnimator = GetComponent<Animator>();
         birdAudioSource = GetComponent<AudioSource>();
+        uiManagerScript = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -128,6 +130,16 @@ public class BirdBehavior : MonoBehaviour
             // SFX
             birdAudioSource.Stop();
             birdAudioSource.PlayOneShot(deathSound);
+
+            // UP DATE SCORE
+            if (hasLetter)
+            {
+                uiManagerScript.UpdateScore("LetterBird");
+            }
+            else
+            {
+                uiManagerScript.UpdateScore("Bird");
+            }
         }
     }
 }
