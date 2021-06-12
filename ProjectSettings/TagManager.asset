@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
   - Enemy
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
@@ -15,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Ball
+  - 
+  - 
   - 
   - 
   - 
