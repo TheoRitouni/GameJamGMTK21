@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BirdBehavior : MonoBehaviour
 {
+    //UNITY ACTION
+    public UnityAction OnRun;
+    public UnityAction OnDeath;
+
     // FIELDS
     // SERIALIZED FIELDS
     [SerializeField] private float minSpeed = 5f;
@@ -21,19 +26,16 @@ public class BirdBehavior : MonoBehaviour
 
     // REFERENCES
     private Animator birdAnimator;
-    private AudioSource birdAudioSource;
     [SerializeField] private GameObject letter;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
-    private UIManager uiManagerScript;
 
-    // SFX
-    [SerializeField] private AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
     {
         birdSpeed = Random.Range(minSpeed, maxSpeed);
+        OnRun?.Invoke();
 
         // Letter manager
         if (hasLetter)
@@ -56,8 +58,6 @@ public class BirdBehavior : MonoBehaviour
 
         // References
         birdAnimator = GetComponent<Animator>();
-        birdAudioSource = GetComponent<AudioSource>();
-        uiManagerScript = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -128,18 +128,7 @@ public class BirdBehavior : MonoBehaviour
             birdSpeed = 0f;
 
             // SFX
-            birdAudioSource.Stop();
-            birdAudioSource.PlayOneShot(deathSound);
-
-            // UP DATE SCORE
-            if (hasLetter)
-            {
-                uiManagerScript.UpdateScore("LetterBird");
-            }
-            else
-            {
-                uiManagerScript.UpdateScore("Bird");
-            }
+            OnDeath?.Invoke();
         }
     }
 }
