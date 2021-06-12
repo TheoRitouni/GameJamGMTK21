@@ -54,6 +54,8 @@ public class Ball : MonoBehaviour
     private float distanceCheckGroundReflect = 1.0f;
 
     private bool checkRightTrigger = false;
+    private int nbrOfReflect = 0;
+    public float[] multiplyValue = {1.05f,1.10f,1.15f,1.25f,1.40f};
 
     // Generals Properties 
     [Space]
@@ -78,6 +80,9 @@ public class Ball : MonoBehaviour
 
         if (ballTrigger.isReflect)
             SetVelocityOfReflect();
+
+        if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
+            nbrOfReflect = 0;
     }
 
     void CheckBallPower()
@@ -191,8 +196,10 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(TagList.groundTag))
         {
+            //checkRightTrigger = true;
             onHitGround?.Invoke(collision);
             ReflectBall(collision.contacts[0].normal);
+            ballTrigger.checkRightTrigger = true;
         }
         else if (collision.gameObject.CompareTag(TagList.enemyTag)) onHitEnemy?.Invoke();
 
@@ -206,28 +213,33 @@ public class Ball : MonoBehaviour
 
     void SetVelocityOfReflect()
     {
-
         Vector2 dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (dirJoystickLeft.magnitude != 0)
             Debug.DrawRay(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y, 0) * 5, Color.red);
 
-        if (Input.GetAxis("RightTrigger") > -1)
-            checkRightTrigger = false;
+       // if (Input.GetAxis("RightTrigger") > -1)
+       //     checkRightTrigger = false;
 
-        if (Input.GetAxis("RightTrigger") != 0 && !checkRightTrigger)
+        if (Input.GetAxis("RightTrigger") != 0 && ballTrigger.checkRightTrigger)
         {
-            checkRightTrigger = true;
+            ballTrigger.checkRightTrigger = false;
             rigid.velocity = new Vector2(0, 0);
 
             //raycast to check if your direction is a wall 
-            RaycastHit hit;
-            Physics.Raycast(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y,0), out hit, distanceCheckGroundReflect);
+            //RaycastHit hit;
+            //Physics.Raycast(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y,0), out hit, distanceCheckGroundReflect);
+            
+            dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (dirJoystickLeft.magnitude != 0)
-                rigid.velocity = dirJoystickLeft * reflectForce;
+                rigid.velocity = dirJoystickLeft * ( reflectForce * multiplyValue[nbrOfReflect] );
             else
-                rigid.velocity = reflect * reflectForce;
+                rigid.velocity = reflect * ( reflectForce * multiplyValue[nbrOfReflect] );
+            
+            if(nbrOfReflect < 4)
+                nbrOfReflect++;
+
         }
 
     }

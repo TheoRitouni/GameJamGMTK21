@@ -216,6 +216,41 @@ PrefabInstance:
       propertyPath: timerSpecialCapacity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920226, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: multiplyValue.Array.data[0]
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920226, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: multiplyValue.Array.data[1]
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920226, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: multiplyValue.Array.data[2]
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920226, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: multiplyValue.Array.data[3]
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920226, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: multiplyValue.Array.data[4]
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491655920227, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162526491909204155, guid: 4a450e1975065624ab0833ad05f94a60,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9162526493201561446, guid: 4a450e1975065624ab0833ad05f94a60,
         type: 3}
       propertyPath: m_Name
