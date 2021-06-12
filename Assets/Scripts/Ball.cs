@@ -30,25 +30,36 @@ public class Ball : MonoBehaviour
     private bool isYNegAxis = true;
     private bool isXNegAxis = true;
 
-    private bool firstHalf = true;
-
     [Space]
     [SerializeField]
     private float toleranceRotation = 0.5f;
 
+
+    // Reflect 
+    private Vector2 reflect;
+    [Space]
+    [SerializeField]
+    private float reflectForce = 3000.0f;
+
     // Generals Properties 
     private Rigidbody2D rigid;
+    [SerializeField]
+    private BallTrigger ballTrigger;
 
 
     void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        ballTrigger = gameObject.GetComponentInChildren<BallTrigger>();
     }
 
     void Update()
     {
         CheckBallPower();
         DirectionBall();
+
+        if (ballTrigger.isReflect)
+            SetVelocityOfReflect();
     }
 
     void CheckBallPower()
@@ -126,7 +137,6 @@ public class Ball : MonoBehaviour
         isXPosAxis = true;
         isYNegAxis = true;
         isXNegAxis = true;
-        firstHalf = true;
     }
 
     void ResetValueRotation()
@@ -160,6 +170,21 @@ public class Ball : MonoBehaviour
     // check ennemy if you touch kill it 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        ReflectBall(collision.contacts[0].normal);
+    }
+
+   
+    void ReflectBall(Vector2 collisionNormal)
+    {
+        reflect = Vector2.Reflect(ballTrigger.saveVelocityBall.normalized, collisionNormal);
+    }
+
+    void SetVelocityOfReflect()
+    {
+        if (Input.GetAxis("RightTrigger") != 0)
+        {
+            rigid.velocity = new Vector2(0, 0);
+            rigid.AddForce(reflect.normalized * reflectForce);
+        }
     }
 }
