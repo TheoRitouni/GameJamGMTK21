@@ -33,7 +33,6 @@ public class HitstopManager : Manager
     private IEnumerator HitStop(HitstopData pData)
     {
         Time.timeScale = pData.amount;
-        Debug.Log("Hitstop");
         yield return new WaitForSecondsRealtime(pData.duration);
         Time.timeScale = 1;
         coroutine = null;

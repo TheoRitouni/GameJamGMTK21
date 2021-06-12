@@ -6,7 +6,8 @@ using utils;
 
 public class Ball : MonoBehaviour
 {
-    public UnityAction onHitGround;
+    public UnityAction<Collision2D> onHitGround;
+    public UnityAction<int> onChangeForce;
     public UnityAction onHitEnemy;
 
     // Force of ball
@@ -121,6 +122,7 @@ public class Ball : MonoBehaviour
         {
             finalForce = force1;
             print("1");
+            onChangeForce?.Invoke(1);
             holdDir = true;
             ResetBoolOneRotateDone();
         }
@@ -128,12 +130,14 @@ public class Ball : MonoBehaviour
         {
             finalForce = force2;
             print("2");
+            onChangeForce?.Invoke(2);
             ResetBoolOneRotateDone();
         }
         if (xPosAxis >= rotate3 && xNegAxis >= rotate3 && yPosAxis >= rotate3 && yNegAxis >= rotate3 && finalForce < force3)
         {
             finalForce = force3;
             print("3");
+            onChangeForce?.Invoke(3);
         }
     }
 
@@ -152,6 +156,7 @@ public class Ball : MonoBehaviour
         yNegAxis = 0;
         xNegAxis = 0;
         finalForce = 0;
+        onChangeForce?.Invoke(0);
     }
 
     void DirectionBall()
@@ -178,7 +183,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(TagList.groundTag))
         {
-            onHitGround?.Invoke();
+            onHitGround?.Invoke(collision);
             ReflectBall(collision.contacts[0].normal);
         }
         else if (collision.gameObject.CompareTag(TagList.enemyTag)) onHitEnemy?.Invoke();
@@ -196,6 +201,7 @@ public class Ball : MonoBehaviour
 
         if (Input.GetAxis("RightTrigger") != 0 && !checkRightTrigger)
         {
+            Debug.Log("Reflect");
             checkRightTrigger = true;
             rigid.velocity = new Vector2(0, 0);
             rigid.velocity = (reflect.normalized * reflectForce);

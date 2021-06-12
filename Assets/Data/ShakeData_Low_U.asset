@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75af0666ba198c441b2011451552f22e, type: 3}
   m_Name: ShakeData_Low_U
   m_EditorClassIdentifier: 
-  _magnitude: 0.15
-  _duration: 0.4
+  _magnitude: 0.25
+  _duration: 3
   _curve:
     serializedVersion: 2
     m_Curve:
