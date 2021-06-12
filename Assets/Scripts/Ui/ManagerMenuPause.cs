@@ -34,17 +34,10 @@ public class ManagerMenuPause : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Pause"))
+        {
             isPause = !isPause;
-
-        if (isPause)
-        {
-            Time.timeScale = 0;
-            menuPause.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 1;
-            menuPause.SetActive(false);
+            menuPause.SetActive(isPause);
+            Time.timeScale = isPause? 0:1;
         }
     }
 
