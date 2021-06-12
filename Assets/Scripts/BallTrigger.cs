@@ -25,7 +25,7 @@ public class BallTrigger : MonoBehaviour
     {
         if(isReflect)
         {
-            timerSpecialCapacity -= Time.unscaledTime;
+            timerSpecialCapacity -= Time.deltaTime; 
         
             if(timerSpecialCapacity <= 0)
             {
@@ -37,9 +37,10 @@ public class BallTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+ 
         if (collision.CompareTag(TagList.groundTag))
         {
-            saveVelocityBall = ball.velocity;
+            saveVelocityBall = ball.velocity.normalized;
             isReflect = true;
         }
     }
@@ -47,6 +48,8 @@ public class BallTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag(TagList.groundTag))
+        {
             isReflect = false;
+        }
     }
 }

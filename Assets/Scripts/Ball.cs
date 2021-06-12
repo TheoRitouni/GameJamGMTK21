@@ -10,6 +10,9 @@ public class Ball : MonoBehaviour
     public UnityAction<int> onChangeForce;
     public UnityAction onHitEnemy;
 
+
+    [Space]
+    [Header("Power Ball")]
     // Force of ball
     [SerializeField]
     private float force1 = 100.0f;
@@ -42,13 +45,19 @@ public class Ball : MonoBehaviour
 
 
     // Reflect 
-    private Vector2 reflect;
     [Space]
+    [Header("Reflect")]
+    private Vector2 reflect;
     [SerializeField]
     private float reflectForce = 3000.0f;
+    [SerializeField]
+    private float distanceCheckGroundReflect = 1.0f;
+
     private bool checkRightTrigger = false;
 
     // Generals Properties 
+    [Space]
+    [Header("General Properties")]
     private Rigidbody2D rigid;
     [SerializeField]
     private BallTrigger ballTrigger;
@@ -121,7 +130,6 @@ public class Ball : MonoBehaviour
         if (xPosAxis >= rotate1 && xNegAxis >= rotate1 && yPosAxis >= rotate1 && yNegAxis >= rotate1 && finalForce < force1)
         {
             finalForce = force1;
-            print("1");
             onChangeForce?.Invoke(1);
             holdDir = true;
             ResetBoolOneRotateDone();
@@ -129,14 +137,12 @@ public class Ball : MonoBehaviour
         if (xPosAxis >= rotate2 && xNegAxis >= rotate2 && yPosAxis >= rotate2 && yNegAxis >= rotate2 && finalForce < force2)
         {
             finalForce = force2;
-            print("2");
             onChangeForce?.Invoke(2);
             ResetBoolOneRotateDone();
         }
         if (xPosAxis >= rotate3 && xNegAxis >= rotate3 && yPosAxis >= rotate3 && yNegAxis >= rotate3 && finalForce < force3)
         {
             finalForce = force3;
-            print("3");
             onChangeForce?.Invoke(3);
         }
     }
@@ -193,20 +199,34 @@ public class Ball : MonoBehaviour
    
     void ReflectBall(Vector2 collisionNormal)
     {
-        reflect = Vector2.Reflect(ballTrigger.saveVelocityBall.normalized, collisionNormal);
+        reflect = Vector2.Reflect(ballTrigger.saveVelocityBall.normalized, collisionNormal);  
     }
 
     void SetVelocityOfReflect()
     {
 
+        Vector2 dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if (dirJoystickLeft.magnitude != 0)
+            Debug.DrawRay(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y, 0) * 5, Color.red);
+
+        if (Input.GetAxis("RightTrigger") > -1)
+            checkRightTrigger = false;
+
         if (Input.GetAxis("RightTrigger") != 0 && !checkRightTrigger)
         {
             checkRightTrigger = true;
             rigid.velocity = new Vector2(0, 0);
-            rigid.velocity = (reflect.normalized * reflectForce);
+
+            //raycast to check if your direction is a wall 
+            RaycastHit hit;
+            Physics.Raycast(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y,0), out hit, distanceCheckGroundReflect);
+
+            if (dirJoystickLeft.magnitude != 0)
+                rigid.velocity = dirJoystickLeft * reflectForce;
+            else
+                rigid.velocity = reflect * reflectForce;
         }
 
-        if (Input.GetAxis("RightTrigger") > -1)
-            checkRightTrigger = false;
     }
 }
