@@ -18,6 +18,11 @@ public class LetterBirdBehavior : MonoBehaviour
 
     // REFERENCES
     private SpawnManager spawnManagerScript;
+    private Animator letterBirdAnimator;
+    private AudioSource letterBirdAudioSource;
+
+    // SFX
+    private AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +41,7 @@ public class LetterBirdBehavior : MonoBehaviour
 
         // Reference
         spawnManagerScript = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
+        letterBirdAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -83,6 +89,16 @@ public class LetterBirdBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Game Over");
+        }
+
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            birdSpeed = 0;
+            letterBirdAnimator.SetBool("isDead", true);
+
+            // SFX
+            letterBirdAudioSource.Stop();
+            letterBirdAudioSource.PlayOneShot(deathSound);
         }
     }
 }

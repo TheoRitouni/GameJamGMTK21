@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - SpawnManager
-  - Ground
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -16,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - Ball
-  - Player
+  - 
+  - 
   - 
   - 
   - 
