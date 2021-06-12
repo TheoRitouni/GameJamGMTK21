@@ -13,6 +13,11 @@ public class BallTrigger : MonoBehaviour
     private float timerSpecialCapacity = 1.0f;
     private float saveTimerSC= 0f;
 
+    public bool isChainReflect = false;
+    public bool checkRightTrigger = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,7 @@ public class BallTrigger : MonoBehaviour
             {
                 timerSpecialCapacity = saveTimerSC;
                 isReflect = false;
+                isChainReflect = false;
             }
         }
     }
@@ -42,6 +48,8 @@ public class BallTrigger : MonoBehaviour
         {
             saveVelocityBall = ball.velocity.normalized;
             isReflect = true;
+            isChainReflect = true;
+            checkRightTrigger = true;
         }
     }
 
