@@ -9,8 +9,6 @@ public class Ball : MonoBehaviour
     public UnityAction<Collision2D> onHitGround;
     public UnityAction<int> onChangeForce;
     public UnityAction onHitEnemy;
-    public UnityAction onPropulsion;
-
 
 
     [Space]
@@ -55,7 +53,6 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private float distanceCheckGroundReflect = 1.0f;
 
-    private bool checkRightTrigger = false;
     private int nbrOfReflect = 0;
     public float[] multiplyValue = {1.05f,1.10f,1.15f,1.25f,1.40f};
 
@@ -77,14 +74,17 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        CheckBallPower();
-        DirectionBall();
+        if (Time.timeScale != 0)
+        {
+            CheckBallPower();
+            DirectionBall();
 
-        if (ballTrigger.isReflect)
-            SetVelocityOfReflect();
+            if (ballTrigger.isReflect)
+                SetVelocityOfReflect();
 
-        if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
-            nbrOfReflect = 0;
+            if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
+                nbrOfReflect = 0;
+        }
     }
 
     void CheckBallPower()
@@ -185,7 +185,6 @@ public class Ball : MonoBehaviour
 
             if (Input.GetAxis("RightTrigger") != 0)
             {
-                onPropulsion?.Invoke();
                 rigid.velocity = (dirJoystickLeft.normalized * finalForce);
                 ResetValueRotation();
                 ResetBoolOneRotateDone();
@@ -236,17 +235,10 @@ public class Ball : MonoBehaviour
             dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (dirJoystickLeft.magnitude != 0)
-            {
-                rigid.velocity = dirJoystickLeft * (reflectForce * multiplyValue[nbrOfReflect]);
-                onPropulsion?.Invoke();
-            }
-
+                rigid.velocity = dirJoystickLeft * ( reflectForce * multiplyValue[nbrOfReflect] );
             else
-            {
-                rigid.velocity = reflect * (reflectForce * multiplyValue[nbrOfReflect]);
-                onPropulsion?.Invoke();
-            }
-
+                rigid.velocity = reflect * ( reflectForce * multiplyValue[nbrOfReflect] );
+            
             if(nbrOfReflect < 4)
                 nbrOfReflect++;
 
