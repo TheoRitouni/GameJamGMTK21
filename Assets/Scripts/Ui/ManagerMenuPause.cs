@@ -33,7 +33,7 @@ public class ManagerMenuPause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = !isPause;
             menuPause.SetActive(isPause);
