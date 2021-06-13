@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
@@ -12,6 +13,10 @@ public class ManagerMenuPause : MonoBehaviour
     private AudioMixer audioMixer;
     [SerializeField]
     private GameObject menuPause;
+    [SerializeField]
+    private GameObject selectedObject;
+    [SerializeField]
+    private EventSystem eventSystem;
 
     [SerializeField]
     private Slider sliderSfx;
@@ -39,6 +44,7 @@ public class ManagerMenuPause : MonoBehaviour
             {
                 isPause = !isPause;
                 menuPause.SetActive(isPause);
+                eventSystem.SetSelectedGameObject(selectedObject);
                 Time.timeScale = isPause? 0:1;
             }
         }
