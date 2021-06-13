@@ -34,6 +34,10 @@ public class BallVisual : MonoBehaviour
     [SerializeField] AudioSource audioSourcePropulsion;
     [SerializeField] AudioSource audioSourceHitWall;
 
+
+    [Header("Camera")]
+    [SerializeField] Camera camera;
+
     private void Start()
     {
         ball.onHitGround += OnHitGround;
@@ -48,7 +52,7 @@ public class BallVisual : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale != 0)
+          if (Time.timeScale != 0)
         {
             IndicatorSetting();
             ChainSetting();
@@ -99,7 +103,11 @@ public class BallVisual : MonoBehaviour
 
     void IndicatorSetting()
     {
-        Vector2 dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 dirJoystickLeft;
+        if (GlobalValues.switchControl)
+            dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        else
+            dirJoystickLeft = camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         if (dirJoystickLeft.magnitude > 0.1f)
         {
