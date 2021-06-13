@@ -124,7 +124,7 @@ public class BirdBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.getInstance().GameOver();
+            Player.getInstance().TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("Ball"))

@@ -103,7 +103,7 @@ public class GuardBehavior : MonoBehaviour
         // Player takes damage or is dead
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.getInstance().GameOver();
+            Player.getInstance().TakeDamage();
         }
 
         // Enemy is dead
