@@ -28,6 +28,7 @@ public class BallVisual : MonoBehaviour
     [Header("Squash and Stretch")]
     [SerializeField] AnimationCurve squatchCurveX = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
     [SerializeField] AnimationCurve squatchCurveY = new AnimationCurve(new Keyframe(0,1), new Keyframe(1, 1));
+    private Vector3 initialScale;
 
     [Header("VFX")]
     [SerializeField] AudioSource audioSourcePropulsion;
@@ -42,6 +43,7 @@ public class BallVisual : MonoBehaviour
 
         indicator.indicatorScale = indicator.launchIndicator.transform.localScale;
         indicator.indicatorTrailTime = indicator.trailIndicator.time;
+        initialScale = ballRenderer.transform.localScale;
     }
 
     private void Update()
@@ -86,7 +88,7 @@ public class BallVisual : MonoBehaviour
         float lRatio = lVelocity.magnitude/ball.maxForce;
 
         ballRenderer.transform.eulerAngles = new Vector3 (0,0,((Mathf.Atan2(lVelocity.normalized.y, lVelocity.normalized.x))*Mathf.Rad2Deg)-90);
-        ballRenderer.transform.localScale = new Vector3 (squatchCurveX.Evaluate(lRatio), squatchCurveY.Evaluate(lRatio),1);
+        ballRenderer.transform.localScale = new Vector3 (squatchCurveX.Evaluate(lRatio)*initialScale.x, squatchCurveY.Evaluate(lRatio)*initialScale.y, initialScale.z);
     }
 
     void OnHitEnemy()
