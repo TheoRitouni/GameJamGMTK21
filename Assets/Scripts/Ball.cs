@@ -76,24 +76,28 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        CheckBallPower();
-        DirectionBall();
-
-        if (ballTrigger.isReflect)
-            SetVelocityOfReflect();
-
-        if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
-            nbrOfReflect = 0;
-
-        // Check if the ball is moving or not
-        if(velocity.magnitude > 1f)
+        if(Time.timeScale != 0)
         {
-            isMoving = true;
+            CheckBallPower();
+            DirectionBall();
+
+            if (ballTrigger.isReflect)
+                SetVelocityOfReflect();
+
+            if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
+                nbrOfReflect = 0;
+
+            // Check if the ball is moving or not
+            if(velocity.magnitude > 1f)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
         }
-        else
-        {
-            isMoving = false;
-        }
+
     }
 
     void CheckBallPower()
