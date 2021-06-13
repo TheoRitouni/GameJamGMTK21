@@ -35,7 +35,7 @@ public class ManagerMenuPause : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!GameManager.getInstance().isGameEnd)
+            if (!GameManager.getInstance().isGameEnd && !LevelManager.getInstance().isLoading)
             {
                 isPause = !isPause;
                 menuPause.SetActive(isPause);
