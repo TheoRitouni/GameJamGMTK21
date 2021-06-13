@@ -69,6 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7571847007345941227}
+  - component: {fileID: 1900626168}
   m_Layer: 0
   m_Name: Bird with waypoints
   m_TagString: Untagged
@@ -93,6 +94,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900626168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571847007345941220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653d884ea43acc944b8583989ee86727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTime: 3
+  prefab: {fileID: 9215770531944075623}
 --- !u!1001 &67664693233860220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +127,11 @@ PrefabInstance:
       objectReference: {fileID: 7571847006976337791}
     - target: {fileID: 9157114189150433048, guid: 00ee68502c5b8fb42959fdecf1af9172,
         type: 3}
+      propertyPath: guards.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157114189150433048, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
       propertyPath: start
       value: 
       objectReference: {fileID: 7571847005840596984}
@@ -124,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157114189150433051, guid: 00ee68502c5b8fb42959fdecf1af9172,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9157114189150433055, guid: 00ee68502c5b8fb42959fdecf1af9172,
         type: 3}
@@ -192,6 +217,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ee68502c5b8fb42959fdecf1af9172, type: 3}
+--- !u!1 &9215770531944075623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9157114189150433051, guid: 00ee68502c5b8fb42959fdecf1af9172,
+    type: 3}
+  m_PrefabInstance: {fileID: 67664693233860220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9215770531944075619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9157114189150433055, guid: 00ee68502c5b8fb42959fdecf1af9172,

@@ -17,13 +17,11 @@ public class GuardBehavior : MonoBehaviour
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float deathLimit = 30f;
     [Space]
-    [SerializeField] private float spawnTime = 2f;
     [SerializeField] private bool isCycling = false;
 
     // PRIVATE FIELDS
     private float guardSpeed;
     private bool goingTowardFinish = true;
-    private bool canMove = false;
     private Vector3 direction;
     private Animator guardAnimator;
 
@@ -48,9 +46,6 @@ public class GuardBehavior : MonoBehaviour
 
         // Getting the moving direction
         direction = Vector3.Normalize(finish.transform.localPosition - start.transform.localPosition);
-
-        // Start time for spawning
-        StartCoroutine(Spawner());
 
         // References
         guardAnimator = GetComponent<Animator>();
@@ -102,12 +97,6 @@ public class GuardBehavior : MonoBehaviour
         transform.Translate(direction * Time.deltaTime * guardSpeed);
     }
 
-    private IEnumerator Spawner()
-    {
-        yield return new WaitForSecondsRealtime(spawnTime);
-
-        canMove = true;
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

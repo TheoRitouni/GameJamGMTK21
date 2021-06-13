@@ -16,14 +16,12 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private float minSpeed = 5f;
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float deathLimit = 30f;
-    [SerializeField] private float spawnTime = 2f;
     public bool hasLetter = false;
     [SerializeField] private bool isCycling = false;
 
     // PRIVATE FIELDS
     private float birdSpeed;
     private bool goingTowardFinish = true;
-    private bool canMove = false;
     private Vector3 direction;
 
     // REFERENCES
@@ -32,6 +30,7 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private GameObject letter;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
+    [SerializeField] private GameObject[] guards;
     private Ball ballScript;
 
     [Header("Score")]
@@ -61,9 +60,6 @@ public class BirdBehavior : MonoBehaviour
         // Getting the moving direction
         direction = Vector3.Normalize(finish.transform.localPosition - start.transform.localPosition);
 
-        // Start time for spawning
-        StartCoroutine(Spawner());
-
         // References
         birdAnimator = GetComponent<Animator>();
         ballScript = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
@@ -72,15 +68,12 @@ public class BirdBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
-        {
-            BirdMovement();
+        BirdMovement();
 
-            // Destroy the game object if it cross the death boundery
-            if (Mathf.Abs(transform.position.x) >= deathLimit)
-            {
-                Destroy(gameObject);
-            }
+        // Destroy the game object if it cross the death boundery
+        if (Mathf.Abs(transform.position.x) >= deathLimit)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -112,18 +105,18 @@ public class BirdBehavior : MonoBehaviour
                 OnStopMoving?.Invoke();
 
                 // In the case of the letter bird
-                Debug.Log("ALERT!!!");
+                if (hasLetter)
+                {
+                    // Guards will spawn
+                    foreach (GameObject guard in guards)
+                    {
+                        guard.SetActive(true);
+                    }
+                }
             }
         }
         // Move the bird
         transform.Translate(direction * Time.deltaTime * birdSpeed);
-    }
-
-    private IEnumerator Spawner()
-    {
-        yield return new WaitForSecondsRealtime(spawnTime);
-
-        canMove = true;
     }
 
 
