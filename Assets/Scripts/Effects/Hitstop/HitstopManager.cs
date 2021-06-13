@@ -34,7 +34,7 @@ public class HitstopManager : Manager
     {
         Time.timeScale = pData.amount;
         yield return new WaitForSecondsRealtime(pData.duration);
-        Time.timeScale = 1;
+        if(!GameManager.getInstance().isGameEnd)Time.timeScale = 1;
         coroutine = null;
     }
 

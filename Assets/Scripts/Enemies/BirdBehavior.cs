@@ -124,7 +124,7 @@ public class BirdBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Game Over");
+            GameManager.getInstance().GameOver();
         }
 
         if (collision.gameObject.CompareTag("Ball"))
@@ -133,6 +133,7 @@ public class BirdBehavior : MonoBehaviour
             {
                 birdAnimator.SetBool("isDead", true);
                 birdSpeed = 0f;
+                GetComponent<Collider2D>().enabled = false;
 
                 // SFX
                 OnDeath?.Invoke();
