@@ -66,6 +66,7 @@ public class Ball : MonoBehaviour
 
     public Vector2 velocity => rigid.velocity;
     public float maxForce => force3;
+    public bool isMoving;
 
     void Start()
     {
@@ -83,6 +84,16 @@ public class Ball : MonoBehaviour
 
         if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
             nbrOfReflect = 0;
+
+        // Check if the ball is moving or not
+        if(velocity.magnitude > 1f)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 
     void CheckBallPower()

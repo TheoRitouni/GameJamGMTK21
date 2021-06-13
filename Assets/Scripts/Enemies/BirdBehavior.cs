@@ -15,6 +15,7 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float deathLimit = 30f;
     [SerializeField] private float spawnTime = 2f;
+    [Space]
     [SerializeField] private bool hasLetter = false;
     [SerializeField] private bool isCycling = false;
 
@@ -26,9 +27,11 @@ public class BirdBehavior : MonoBehaviour
 
     // REFERENCES
     private Animator birdAnimator;
+    [Space]
     [SerializeField] private GameObject letter;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
+    private Ball ballScript;
 
 
     // Start is called before the first frame update
@@ -58,6 +61,7 @@ public class BirdBehavior : MonoBehaviour
 
         // References
         birdAnimator = GetComponent<Animator>();
+        ballScript = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -124,11 +128,14 @@ public class BirdBehavior : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ball"))
         {
-            birdAnimator.SetBool("isDead", true);
-            birdSpeed = 0f;
+            if (ballScript.isMoving)
+            {
+                birdAnimator.SetBool("isDead", true);
+                birdSpeed = 0f;
 
-            // SFX
-            OnDeath?.Invoke();
+                // SFX
+                OnDeath?.Invoke();
+            }
         }
     }
 }
