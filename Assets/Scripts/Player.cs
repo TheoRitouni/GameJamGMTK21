@@ -4,49 +4,56 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private Rigidbody2D rigidBody;
+    private static Player instance;
 
-    //Movements Player Settings
-    [SerializeField]
-    private float speed = 1.0f;
+    private int lifePoints = 6;
+    [SerializeField] private List<GameObject> bodyParts;
+    [SerializeField] private ParticleSystem particleHit;
+    private bool canTakeDamage = true;
 
-
-    void Start()
+    private void Awake()
     {
-        rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        if (instance != null)
+            Destroy(gameObject);
+
+        else instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static Player getInstance()
     {
-        BasicMovementPlayer();
-
+        if (instance == null) new GameObject("Player").AddComponent<Player>();
+        return instance;
     }
 
-    void BasicMovementPlayer()
+    public void TakeDamage()
     {
-
-        if (Input.GetAxis("Horizontal") < 0)
-            rigidBody.velocity = new Vector2(-speed * Time.deltaTime, 0);
-
-
-        if (Input.GetAxis("Horizontal") > 0)
-            rigidBody.velocity = new Vector2(speed * Time.deltaTime, 0);
-
-
-        if (Input.GetAxis("Horizontal") == 0)
-            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+        if (canTakeDamage)
+        {
+            StartCoroutine(LosePart());
+            if(lifePoints <= 0)
+            {
+                GameManager.getInstance().GameOver();
+            }
+        }
     }
 
-    void RotationBall()
+    IEnumerator LosePart()
     {
+        canTakeDamage = false;
+        lifePoints--;
+        particleHit?.Play();
 
+        for (int i = bodyParts.Count - 1; i >= 0; i--)
+        {
+            if (i == lifePoints)
+            {
+                GameObject lPart = bodyParts[i];
+                lPart.GetComponent<Collider2D>().enabled = false;
+                lPart.GetComponent<SpriteRenderer>().enabled = false;
+                break;
+            }
+        }
+        yield return new WaitForSeconds(1f);
+        canTakeDamage = true;
     }
-
-    void LaunchBall()
-    {
-
-    }
-
 }

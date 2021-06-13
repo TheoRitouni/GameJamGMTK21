@@ -114,9 +114,9 @@ TextureImporter:
       name: TPose_ArmL
       rect:
         serializedVersion: 2
-        x: 375
+        x: 132
         y: 605
-        width: 193
+        width: 436
         height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -137,7 +137,7 @@ TextureImporter:
         serializedVersion: 2
         x: 783
         y: 627
-        width: 205
+        width: 468
         height: 147
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -211,48 +211,6 @@ TextureImporter:
       bones: []
       spriteID: 70ec099e2d91d0ae0800000000000000
       internalID: -1581579500484768249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TPose_ArmR_1
-      rect:
-        serializedVersion: 2
-        x: 988
-        y: 628
-        width: 267
-        height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12718f97b29f15e10800000000000000
-      internalID: 2184801259376613153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TPose_ArmL_1
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 602
-        width: 248
-        height: 176
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0a63c16a5735f0e0800000000000000
-      internalID: -2236820778592802291
       vertices: []
       indices: 
       edges: []
