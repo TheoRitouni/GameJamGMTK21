@@ -63,7 +63,6 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigid;
     [SerializeField]
     private BallTrigger ballTrigger;
-    [SerializeField]
     private Camera cam;
 
     private bool isleftClick = false;
@@ -76,6 +75,7 @@ public class Ball : MonoBehaviour
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         ballTrigger = gameObject.GetComponentInChildren<BallTrigger>();
+        cam = Camera.main;
     }
 
     void Update()
