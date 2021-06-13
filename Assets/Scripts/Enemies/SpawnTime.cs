@@ -9,6 +9,7 @@ public class SpawnTime : MonoBehaviour
     // SERIALIZE FIELDS
 
     [SerializeField] private float spawnTime = 2f;
+    [SerializeField] ParticleSystem particlesSpawn;
 
     // REFERENCES
     [SerializeField] private GameObject prefab;
@@ -22,8 +23,14 @@ public class SpawnTime : MonoBehaviour
     private IEnumerator Spawner()
     {
         yield return new WaitForSecondsRealtime(spawnTime);
+        if (particlesSpawn != null)
+        {
+            particlesSpawn.transform.SetParent(null);
+            particlesSpawn.Play();
+        }
 
         prefab.SetActive(true);
+
     }
 
 }
