@@ -7,8 +7,11 @@ public class GameManager : Manager
     private static GameManager instance;
 
     public UnityAction<int> onScore;
+    public UnityAction onGameOver;
+    public UnityAction onWin;
+    public bool isGameEnd = false;
 
-    private int currentScore;
+    private int _currentScore;
     public float currentTimer;
 
     void Awake()
@@ -41,8 +44,8 @@ public class GameManager : Manager
 
     public void IncreaseScore(int pAmount)
     {
-        currentScore += pAmount;
-        onScore?.Invoke(currentScore);
+        _currentScore += pAmount;
+        onScore?.Invoke(_currentScore);
     }
 
     public static GameManager getInstance()
@@ -51,5 +54,21 @@ public class GameManager : Manager
             new GameObject("GameManager").AddComponent<GameManager>();
 
         return instance;
+    }
+
+    public float currentScore => _currentScore;
+
+    public void GameOver()
+    {
+        isGameEnd = true;
+        Time.timeScale = 0;
+        onGameOver?.Invoke();
+    }
+
+    public void Win()
+    {
+        isGameEnd = true;
+        Time.timeScale = 0;
+        onWin?.Invoke();
     }
 }

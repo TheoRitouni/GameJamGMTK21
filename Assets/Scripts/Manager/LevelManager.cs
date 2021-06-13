@@ -49,10 +49,7 @@ public class LevelManager : Manager
             StartCoroutine(LoadNextLevel(levelList[levelIndex]));
 
         else
-        {
-            Time.timeScale = 0;
-            Debug.Log("you win !");
-        }
+            GameManager.getInstance().Win();
     }
 
     public bool isLoading => _isLoading;

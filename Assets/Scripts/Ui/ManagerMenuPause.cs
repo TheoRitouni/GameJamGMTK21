@@ -35,9 +35,12 @@ public class ManagerMenuPause : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.Escape))
         {
-            isPause = !isPause;
-            menuPause.SetActive(isPause);
-            Time.timeScale = isPause? 0:1;
+            if (!GameManager.getInstance().isGameEnd)
+            {
+                isPause = !isPause;
+                menuPause.SetActive(isPause);
+                Time.timeScale = isPause? 0:1;
+            }
         }
     }
 

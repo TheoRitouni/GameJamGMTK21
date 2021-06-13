@@ -114,7 +114,7 @@ public class GuardBehavior : MonoBehaviour
         // Player takes damage or is dead
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Game Over");
+            GameManager.getInstance().GameOver();
         }
 
         // Enemy is dead
@@ -123,9 +123,10 @@ public class GuardBehavior : MonoBehaviour
 
             if (ballScript.isMoving)
             {
-            GameManager.getInstance().IncreaseScore(guardPoint);
+                GameManager.getInstance().IncreaseScore(guardPoint);
                 guardAnimator.SetBool("isDead", true);
                 guardSpeed = 0f;
+                GetComponent<Collider2D>().enabled = false;
 
                 // SFX
                 OnDeath?.Invoke();
