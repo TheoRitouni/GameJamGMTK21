@@ -30,6 +30,10 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
 
+    [Header("Score")]
+    [SerializeField] private int birdPoint = 100;
+    [SerializeField] private int letterBirdPoint = 150;
+
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +133,8 @@ public class BirdBehavior : MonoBehaviour
 
             // SFX
             OnDeath?.Invoke();
+            int lScore = hasLetter ? letterBirdPoint : birdPoint;
+            GameManager.getInstance().IncreaseScore(lScore);
         }
     }
 }

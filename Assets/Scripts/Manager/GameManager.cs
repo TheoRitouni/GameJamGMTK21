@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : Manager
 {
     private static GameManager instance;
-    
+
+    public UnityAction<int> onScore;
+
     private int currentScore;
     public float currentTimer;
 
@@ -39,6 +42,7 @@ public class GameManager : Manager
     public void IncreaseScore(int pAmount)
     {
         currentScore += pAmount;
+        onScore?.Invoke(currentScore);
     }
 
     public static GameManager getInstance()

@@ -3,40 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Manager
 {
-    // FIELDS
-
-    // PUBLIC FIELDS
-    public int scoreNumber = 0;
-
-    // SERIALIZE FIELDS
-    [SerializeField] private int guardPoint = 50;
-    [SerializeField] private int birdPoint = 100;
-    [SerializeField] private int letterBirdPoint = 150;
+    private static UIManager instance;
 
     // REFERENCES
-    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI timerText;
 
-    
-    public void UpdateScore(string enemyType)
+
+    void Awake()
     {
-        switch (enemyType)
+        if (instance != null)
+            Destroy(this);
+
+        else
         {
-            case "Guard":
-                scoreNumber += guardPoint;
-                break;
-            case "Bird":
-                scoreNumber += birdPoint;
-                break;
-            case "LetterBird":
-                scoreNumber += letterBirdPoint;
-                break;
+            instance = this;
+            DontDestroyOnLoad(this);
+            SetParent();
         }
+    }
+
+    private void Start()
+    {
+        GameManager.getInstance().onScore += UpdateScore;
     }
 
     private void Update()
     {
-        score.text = scoreNumber.ToString();
+        timerText.text = Mathf.Clamp(Mathf.FloorToInt(GameManager.getInstance().currentTimer),0,60).ToString(format: "00");
+    }
+
+    private void UpdateScore(int pScore)
+    {
+        scoreText.text = pScore.ToString(format:"00000");
+    }
+
+    public static UIManager getInstance()
+    {
+        if (instance == null)
+            new GameObject("UIManager").AddComponent<UIManager>();
+
+        return instance;
     }
 }
