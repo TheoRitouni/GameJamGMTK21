@@ -65,7 +65,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -105,34 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TPose_Head
-      rect:
-        serializedVersion: 2
-        x: 596
-        y: 743
-        width: 148
-        height: 205
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12718f97b29f15e10800000000000000
-      internalID: 2184801259376613153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: TPose_ArmL
       rect:
         serializedVersion: 2
-        x: 162
-        y: 630
-        width: 406
-        height: 126
+        x: 137
+        y: 605
+        width: 431
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +150,10 @@ TextureImporter:
       name: TPose_LegR
       rect:
         serializedVersion: 2
-        x: 670
-        y: 185
-        width: 114
-        height: 266
+        x: 664
+        y: 171
+        width: 131
+        height: 280
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +171,10 @@ TextureImporter:
       name: TPose_LegL
       rect:
         serializedVersion: 2
-        x: 542
-        y: 188
-        width: 123
-        height: 266
+        x: 524
+        y: 171
+        width: 141
+        height: 283
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,10 +192,10 @@ TextureImporter:
       name: TPose_Torso
       rect:
         serializedVersion: 2
-        x: 566
-        y: 465
-        width: 218
-        height: 279
+        x: 551
+        y: 466
+        width: 235
+        height: 341
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

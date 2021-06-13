@@ -15,6 +15,7 @@ public class GuardBehavior : MonoBehaviour
     [SerializeField] private float minSpeed = 5f;
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float deathLimit = 30f;
+    [Space]
     [SerializeField] private float spawnTime = 2f;
     [SerializeField] private bool isCycling = false;
 
@@ -23,14 +24,16 @@ public class GuardBehavior : MonoBehaviour
     private bool goingTowardFinish = true;
     private bool canMove = false;
     private Vector3 direction;
+    private Animator guardAnimator;
 
     // REFERENCES
-    private Animator guardAnimator;
+    [Space]
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
 
     [Header("Score")]
     [SerializeField] private int guardPoint = 50;
+    private Ball ballScript;
 
 
     // Start is called before the first frame update
@@ -50,6 +53,7 @@ public class GuardBehavior : MonoBehaviour
 
         // References
         guardAnimator = GetComponent<Animator>();
+        ballScript = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -111,12 +115,16 @@ public class GuardBehavior : MonoBehaviour
         // Enemy is dead
         if (collision.gameObject.CompareTag("Ball"))
         {
-            guardAnimator.SetBool("isDead", true);
-            guardSpeed = 0f;
 
-            // SFX
-            OnDeath?.Invoke();
+            if (ballScript.isMoving)
+            {
             GameManager.getInstance().IncreaseScore(guardPoint);
+                guardAnimator.SetBool("isDead", true);
+                guardSpeed = 0f;
+
+                // SFX
+                OnDeath?.Invoke();
+            }
         }
     }
 }

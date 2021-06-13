@@ -26,9 +26,11 @@ public class BirdBehavior : MonoBehaviour
 
     // REFERENCES
     private Animator birdAnimator;
+    [Space]
     [SerializeField] private GameObject letter;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
+    private Ball ballScript;
 
     [Header("Score")]
     [SerializeField] private int birdPoint = 100;
@@ -62,6 +64,7 @@ public class BirdBehavior : MonoBehaviour
 
         // References
         birdAnimator = GetComponent<Animator>();
+        ballScript = GameObject.FindGameObjectWithTag("Ball").GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -128,13 +131,16 @@ public class BirdBehavior : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Ball"))
         {
-            birdAnimator.SetBool("isDead", true);
-            birdSpeed = 0f;
+            if (ballScript.isMoving)
+            {
+                birdAnimator.SetBool("isDead", true);
+                birdSpeed = 0f;
 
-            // SFX
-            OnDeath?.Invoke();
-            int lScore = hasLetter ? letterBirdPoint : birdPoint;
-            GameManager.getInstance().IncreaseScore(lScore);
+                // SFX
+                OnDeath?.Invoke();
+                int lScore = hasLetter ? letterBirdPoint : birdPoint;
+                GameManager.getInstance().IncreaseScore(lScore);
+            }
         }
     }
 }
