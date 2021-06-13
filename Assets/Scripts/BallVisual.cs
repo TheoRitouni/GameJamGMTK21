@@ -36,10 +36,12 @@ public class BallVisual : MonoBehaviour
 
 
     [Header("Camera")]
-    [SerializeField] Camera camera;
+    private Camera camera;
 
     private void Start()
     {
+        camera = Camera.main;
+
         ball.onHitGround += OnHitGround;
         ball.onHitEnemy += OnHitEnemy;
         ball.onChangeForce += OnChangeForce;
