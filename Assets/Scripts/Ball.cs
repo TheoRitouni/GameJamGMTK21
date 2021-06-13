@@ -63,6 +63,10 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigid;
     [SerializeField]
     private BallTrigger ballTrigger;
+    [SerializeField]
+    private Camera cam;
+
+    private bool isleftClick = false;
 
     public Vector2 velocity => rigid.velocity;
     public float maxForce => force3;
@@ -110,8 +114,15 @@ public class Ball : MonoBehaviour
 
     void CheckBallPower()
     {
+        if (Input.GetMouseButtonDown(0))
+            isleftClick = true;
+
+        if (Input.GetMouseButtonUp(0))
+            isleftClick = false;
+
         // Reset all check power 
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if ((Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && GlobalValues.switchControl) ||
+            (!isleftClick && !GlobalValues.switchControl))
         {
             ResetValueRotation();
             ResetBoolOneRotateDone();
@@ -119,31 +130,46 @@ public class Ball : MonoBehaviour
 
         if (finalForce != force3)
         {
-            RotationCheck();
-            SetupForceOfBall();
+            if (!GlobalValues.switchControl && isleftClick)
+            {
+                RotationCheck();
+                SetupForceOfBall();
+            }
+
+            if (GlobalValues.switchControl)
+            {
+                RotationCheck();
+                SetupForceOfBall();
+            }
         }
     }
 
     void RotationCheck()
     {
+        Vector2 mouseRotate = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
         int maxRotate = 3;
         // Check Rotation of Joystick
-        if (Input.GetAxis("Horizontal") > toleranceRotation && xPosAxis < maxRotate && isXPosAxis)
+        if ((Input.GetAxis("Horizontal") > toleranceRotation && xPosAxis < maxRotate && isXPosAxis) ||
+            (mouseRotate.x > toleranceRotation && xPosAxis < maxRotate && isXPosAxis))
         {
             xPosAxis += 1;
             isXPosAxis = false;
         }
-        if (Input.GetAxis("Horizontal") < -toleranceRotation && xNegAxis < maxRotate && isXNegAxis)
+        if ((Input.GetAxis("Horizontal") < -toleranceRotation && xNegAxis < maxRotate && isXNegAxis) ||
+            (mouseRotate.x < toleranceRotation && xNegAxis < maxRotate && isXNegAxis))
         {
             xNegAxis += 1;
             isXNegAxis = false;
         }
-        if (Input.GetAxis("Vertical") > toleranceRotation && yPosAxis < maxRotate && isYPosAxis)
+        if ((Input.GetAxis("Vertical") > toleranceRotation && yPosAxis < maxRotate && isYPosAxis) ||
+            (mouseRotate.y > toleranceRotation && yPosAxis < maxRotate && isYPosAxis))
         {
             yPosAxis += 1;
             isYPosAxis = false;
         }
-        if (Input.GetAxis("Vertical") < -toleranceRotation && yNegAxis < maxRotate && isYNegAxis)
+        if ((Input.GetAxis("Vertical") < -toleranceRotation && yNegAxis < maxRotate && isYNegAxis) ||
+            (mouseRotate.y < toleranceRotation && yNegAxis < maxRotate && isYNegAxis))
         {
             yNegAxis += 1;
             isYNegAxis = false;
@@ -199,12 +225,17 @@ public class Ball : MonoBehaviour
     {
         if (holdDir)
         {
-            Vector2 dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 dirJoystickLeft;
+            if (GlobalValues.switchControl)
+                dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            else
+                dirJoystickLeft = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
             // just debug line for see direction 
             Debug.DrawRay(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y, 0) * 100, Color.green);
 
-            if (Input.GetAxis("RightTrigger") != 0)
+            if ((Input.GetAxis("RightTrigger") != 0 && GlobalValues.switchControl) ||
+                (Input.GetKeyDown(KeyCode.Space) && !GlobalValues.switchControl))
             {
                 onPropulsion?.Invoke();
                 rigid.velocity = (dirJoystickLeft.normalized * finalForce);
@@ -237,24 +268,25 @@ public class Ball : MonoBehaviour
 
     void SetVelocityOfReflect()
     {
-        Vector2 dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 dirJoystickLeft;
+        if (GlobalValues.switchControl)
+            dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        else
+            dirJoystickLeft = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
         if (dirJoystickLeft.magnitude != 0)
             Debug.DrawRay(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y, 0) * 5, Color.red);
 
-       // if (Input.GetAxis("RightTrigger") > -1)
-       //     checkRightTrigger = false;
-
-        if (Input.GetAxis("RightTrigger") != 0 && ballTrigger.checkRightTrigger)
+        if ((Input.GetAxis("RightTrigger") != 0 && GlobalValues.switchControl) ||
+            (Input.GetKeyDown(KeyCode.Space) && ballTrigger.checkRightTrigger && !GlobalValues.switchControl))
         {
             ballTrigger.checkRightTrigger = false;
             rigid.velocity = new Vector2(0, 0);
 
-            //raycast to check if your direction is a wall 
-            //RaycastHit hit;
-            //Physics.Raycast(transform.position, new Vector3(dirJoystickLeft.x, dirJoystickLeft.y,0), out hit, distanceCheckGroundReflect);
-            
-            dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (GlobalValues.switchControl)
+                dirJoystickLeft = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            else
+                dirJoystickLeft = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
             if (dirJoystickLeft.magnitude != 0)
             {
@@ -268,7 +300,7 @@ public class Ball : MonoBehaviour
                 onPropulsion?.Invoke();
             }
             
-            if(nbrOfReflect < 4)
+            if(nbrOfReflect < multiplyValue.Length - 1)
                 nbrOfReflect++;
 
         }
