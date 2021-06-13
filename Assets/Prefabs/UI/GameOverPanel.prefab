@@ -357,8 +357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 211.12314, y: -192.74982}
-  m_SizeDelta: {x: 422.2463, y: 192.74982}
+  m_AnchoredPosition: {x: 0, y: -192.74982}
+  m_SizeDelta: {x: 0, y: 192.74982}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4311653076717931395
 CanvasRenderer:
@@ -735,8 +735,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 733.3695, y: -192.74982}
-  m_SizeDelta: {x: 422.2463, y: 192.74982}
+  m_AnchoredPosition: {x: 100, y: -192.74982}
+  m_SizeDelta: {x: 0, y: 192.74982}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4311653077052124054
 CanvasRenderer:
@@ -855,6 +855,7 @@ GameObject:
   - component: {fileID: 4311653077510878807}
   - component: {fileID: 4311653077510878805}
   - component: {fileID: 4311653077510878806}
+  - component: {fileID: 7546023764268707688}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -921,6 +922,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7546023764268707688
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4311653077510878824}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c57e4d990be86647bbe0e62d7b557cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4311653077698326505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1274,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
