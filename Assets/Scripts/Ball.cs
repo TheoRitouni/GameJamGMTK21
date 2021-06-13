@@ -76,7 +76,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        if(Time.timeScale != 0)
+        if (Time.timeScale != 0)
         {
             CheckBallPower();
             DirectionBall();
@@ -88,7 +88,7 @@ public class Ball : MonoBehaviour
                 nbrOfReflect = 0;
 
             // Check if the ball is moving or not
-            if(velocity.magnitude > 1f)
+            if (velocity.magnitude > 1f)
             {
                 isMoving = true;
             }
@@ -96,8 +96,16 @@ public class Ball : MonoBehaviour
             {
                 isMoving = false;
             }
-        }
 
+            CheckBallPower();
+            DirectionBall();
+
+            if (ballTrigger.isReflect)
+                SetVelocityOfReflect();
+
+            if (nbrOfReflect != 0 && !ballTrigger.isChainReflect)
+                nbrOfReflect = 0;
+        }
     }
 
     void CheckBallPower()
