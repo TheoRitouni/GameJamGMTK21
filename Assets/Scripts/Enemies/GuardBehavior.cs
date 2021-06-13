@@ -91,7 +91,7 @@ public class GuardBehavior : MonoBehaviour
         else
         {
             // Just stop the bird at the finish point
-            if (Vector3.Distance(transform.position, finish.transform.position) < 0.1f)
+            if (Vector3.Distance(transform.position, finish.transform.position) < 0.2f)
             {
                 guardSpeed = 0;
                 OnStopMoving?.Invoke();
