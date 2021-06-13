@@ -15,7 +15,7 @@ public class BirdBehavior : MonoBehaviour
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float deathLimit = 30f;
     [SerializeField] private float spawnTime = 2f;
-    [SerializeField] private bool hasLetter = false;
+    public bool hasLetter = false;
     [SerializeField] private bool isCycling = false;
 
     // PRIVATE FIELDS

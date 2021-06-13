@@ -402,7 +402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2145596528}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1319740942
 BoxCollider2D:
@@ -730,7 +730,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2145596528}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1669991588
 BoxCollider2D:
@@ -852,7 +852,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2ba62400ef1eead4b8ea9c8cdf848213, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1097,8 +1097,8 @@ Transform:
   m_Children:
   - {fileID: 1423578272}
   - {fileID: 339250519}
-  - {fileID: 1319740941}
   - {fileID: 1669991587}
+  - {fileID: 1319740941}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
