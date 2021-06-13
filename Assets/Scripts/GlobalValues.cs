@@ -8,4 +8,5 @@ public static class GlobalValues
 
     public static float sfxVolume = 0;
     public static float bgmVolume = 0;
+    public static bool switchControl = true;
 }
