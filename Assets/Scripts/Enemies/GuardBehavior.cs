@@ -29,6 +29,9 @@ public class GuardBehavior : MonoBehaviour
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject finish;
 
+    [Header("Score")]
+    [SerializeField] private int guardPoint = 50;
+
 
     // Start is called before the first frame update
     void Start()
@@ -113,6 +116,7 @@ public class GuardBehavior : MonoBehaviour
 
             // SFX
             OnDeath?.Invoke();
+            GameManager.getInstance().IncreaseScore(guardPoint);
         }
     }
 }
