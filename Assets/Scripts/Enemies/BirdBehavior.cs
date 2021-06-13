@@ -8,6 +8,8 @@ public class BirdBehavior : MonoBehaviour
     //UNITY ACTION
     public UnityAction OnRun;
     public UnityAction OnDeath;
+    public UnityAction OnFlip;
+    public UnityAction OnStopMoving;
 
     // FIELDS
     // SERIALIZED FIELDS
@@ -92,11 +94,13 @@ public class BirdBehavior : MonoBehaviour
             {
                 direction *= -1;
                 goingTowardFinish = false;
+                OnFlip?.Invoke();
             }
             else if (Vector3.Distance(transform.position, start.transform.position) < 0.1f && !goingTowardFinish)
             {
                 direction *= -1;
                 goingTowardFinish = true;
+                OnFlip?.Invoke();
             }
         }
         else
@@ -105,6 +109,7 @@ public class BirdBehavior : MonoBehaviour
             if (Vector3.Distance(transform.position, finish.transform.position) < 0.1f && birdSpeed != 0)
             {
                 birdSpeed = 0;
+                OnStopMoving?.Invoke();
 
                 // In the case of the letter bird
                 Debug.Log("ALERT!!!");

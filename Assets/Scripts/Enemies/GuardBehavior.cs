@@ -8,7 +8,8 @@ public class GuardBehavior : MonoBehaviour
     //UNITY ACTION
     public UnityAction OnRun;
     public UnityAction OnDeath;
-
+    public UnityAction OnFlip;
+    public UnityAction OnStopMoving;
 
     // FIELDS
     // SERIALIZED FIELDS
@@ -78,11 +79,13 @@ public class GuardBehavior : MonoBehaviour
             {
                 direction *= -1;
                 goingTowardFinish = false;
+                OnFlip?.Invoke();
             }
             else if (Vector3.Distance(transform.position, start.transform.position) < 0.1f && !goingTowardFinish)
             {
                 direction *= -1;
                 goingTowardFinish = true;
+                OnFlip?.Invoke();
             }
         }
         else
@@ -91,6 +94,8 @@ public class GuardBehavior : MonoBehaviour
             if (Vector3.Distance(transform.position, finish.transform.position) < 0.1f)
             {
                 guardSpeed = 0;
+                OnStopMoving?.Invoke();
+                guardAnimator.SetBool("stopMoving", true);
             }
         }
         // Move the bird

@@ -24,8 +24,10 @@ public class BirdVisual : MonoBehaviour
     {
         bird.OnRun += OnRun;
         bird.OnDeath += OnDeath;
+        bird.OnFlip += OnFlip;
+        bird.OnStopMoving += OnStopMoving;
 
-        if(startPoint.transform.position.x >= finishPoint.transform.position.x)
+        if (startPoint.transform.position.x >= finishPoint.transform.position.x)
         {
             spriteRenderer.flipX = false;
             spriteRendererLetter.flipX = false;
@@ -56,6 +58,18 @@ public class BirdVisual : MonoBehaviour
         psFly.Play();
     }
 
+    void OnFlip()
+    {
+        if (spriteRenderer.flipX) spriteRenderer.flipX = false;
+        else if (!spriteRenderer.flipX) spriteRenderer.flipX = true;
+    }
+
+    void OnStopMoving()
+    {
+        if (audioFly != null) audioFly.Stop();
+        if (psFly != null) psFly.Stop();
+    }
+
     void OnDeath()
     {
         //STOP RUN FX
@@ -69,7 +83,7 @@ public class BirdVisual : MonoBehaviour
         psDeath.transform.localScale = Vector3.one;
 
         //PLAY DEATH FX
-        audioDeath.Play();
-        psDeath.Play();
+        if (audioFly != null) audioDeath.Play();
+        if (psFly != null)  psDeath.Play();
     }
 }

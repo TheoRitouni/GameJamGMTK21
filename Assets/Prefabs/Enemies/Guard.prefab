@@ -4854,9 +4854,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7422553036357566694, guid: abeca8e206d259c4e83c2cf7edd7ee48,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: d89088019f02ad44691d280a24eef929, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a1431736cbb6ce14d89c13bade026730, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9779,7 +9779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4650997289371435565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.028, z: 0}
+  m_LocalPosition: {x: 0, y: -19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1161861220205720488}
@@ -14557,10 +14557,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7422553036357566694, guid: abeca8e206d259c4e83c2cf7edd7ee48,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: ba400245cc092954583a27763ac755eb, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -14671,7 +14671,7 @@ Transform:
   m_GameObject: {fileID: 5936582203183771479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 1}
   m_Children:
   - {fileID: 1161861220205720488}
   - {fileID: 9044303740559468684}
@@ -14691,7 +14691,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
+  m_Offset: {x: -0.96445847, y: -2.181221}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -14702,7 +14702,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.4}
+  m_Size: {x: 10.439753, y: 29.713825}
   m_EdgeRadius: 0
 --- !u!114 &5936582203183771478
 MonoBehaviour:
@@ -14720,7 +14720,7 @@ MonoBehaviour:
   maxSpeed: 10
   deathLimit: 50
   spawnTime: 2
-  isCycling: 0
+  isCycling: 1
   start: {fileID: 0}
   finish: {fileID: 0}
   guardPoint: 50
@@ -14825,8 +14825,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 454dbc8e53e09e74f8e322fe1b107849, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14884,6 +14884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guard: {fileID: 5936582203183771478}
+  spriteRenderer: {fileID: 3022149885828582661}
+  startPoint: {fileID: 0}
+  finishPoint: {fileID: 0}
   audioRun: {fileID: 2512242636210314897}
   audioDeath: {fileID: 5096743240212851677}
   psRun: {fileID: 3029474640558161700}
